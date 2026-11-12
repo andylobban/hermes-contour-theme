@@ -15,13 +15,14 @@ import { THEMES_AREA } from '@hermes/plugin-sdk'
  */
 
 // Every side zone: a tree group holding one of the side panes, but never
-// the main zone (the one whose tabs sit in the titlebar). Pane ids from a
-// plugin carry its id as a prefix.
+// the main zone, whose tab strip sits in the titlebar. Test the strip
+// itself: every top-edge zone, sidebars included, also carries a bare
+// window-drag overlay. Pane ids from a plugin carry its id as a prefix.
 const SIDE_PANES = ['sessions', 'hermes-bots:pane', 'hermes-bots:routines', 'files', 'review']
 const SB =
   '[data-tree-group]:is(' +
   SIDE_PANES.map(id => `:has([data-tree-tab="${id}"])`).join(', ') +
-  '):not(:has([class*="app-region:drag"]))'
+  '):not(:has([class*="group/pane-header"][class*="app-region:drag"]))'
 
 const CUSTOM_CSS = String.raw`
 /* ── Light tokens ────────────────────────────────────────────────────── */
