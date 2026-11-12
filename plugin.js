@@ -24,6 +24,9 @@ const SB =
   SIDE_PANES.map(id => `:has([data-tree-tab="${id}"])`).join(', ') +
   '):not(:has([class*="group/pane-header"][class*="app-region:drag"]))'
 
+// The main zone: the tree group whose own tab strip sits in the titlebar.
+const MAIN = '[data-tree-group]:has(> [data-panel-header] [class*="group/pane-header"][class*="app-region:drag"])'
+
 const CUSTOM_CSS = String.raw`
 /* ── Light tokens ────────────────────────────────────────────────────── */
 :root:root:not(.dark) {
@@ -240,6 +243,28 @@ body {
     inset 1px 0 0 var(--andy-line-strong),
     inset -1px 0 0 var(--andy-line-strong),
     inset 0 1px 0 var(--andy-line-strong);
+}
+
+/* The strip does not span the whole header (the titlebar keeps room on
+   the right), so the header row carries the same baseline to the zone's
+   right edge. The strip paints over it with its own line. */
+${MAIN} > [data-panel-header] {
+  box-shadow: inset 0 -1px 0 var(--andy-line-strong);
+}
+
+/* The chat body gets the same 1px line down its left and right edges,
+   meeting the baseline. Drawn on an overlay so the content's own fill
+   cannot cover it. The body is sometimes wrapped in a display:contents
+   menu element, so both shapes are matched. */
+${MAIN} > [data-zone-body] > .flex-1::after,
+${MAIN} > .flex-1:not([data-panel-header])::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-left: 1px solid var(--andy-line-strong);
+  border-right: 1px solid var(--andy-line-strong);
+  pointer-events: none;
+  z-index: 50;
 }
 
 /* Status dot in a titlebar tab: centred between the tab edge and the
