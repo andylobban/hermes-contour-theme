@@ -219,6 +219,8 @@ body {
 
 [class*="group/pane-header"][class*="app-region:drag"] [role="tablist"] {
   gap: 4px;
+  /* Room for the active tab's bottom flares; the list clips overflow. */
+  padding-inline: 8px;
 }
 
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"] {
@@ -226,7 +228,7 @@ body {
      where 13px tab text measured 20px. */
   font-size: 0.75rem;
   padding: 0 8px;
-  border-radius: 8px 8px 0 0;
+  border-radius: 6px 6px 0 0;
   box-shadow: none;
 }
 
@@ -243,6 +245,38 @@ body {
     inset 1px 0 0 var(--andy-line-strong),
     inset -1px 0 0 var(--andy-line-strong),
     inset 0 1px 0 var(--andy-line-strong);
+}
+
+/* Bottom flares: a concave 6px curve on each side of the active tab
+   carries its outline into the baseline, like a browser tab. Each is a
+   6px square just outside the tab's bottom corner: transparent inside a
+   6px circle, a 1px ring in the line color, panel color beyond it. */
+[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"]::before,
+[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+}
+
+[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"]::before {
+  left: -6px;
+  background: radial-gradient(circle at 0 0,
+    transparent 4.5px,
+    var(--andy-line-strong) 5px,
+    var(--andy-line-strong) 6px,
+    var(--andy-panel) 6.5px);
+}
+
+[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"]::after {
+  right: -6px;
+  background: radial-gradient(circle at 100% 0,
+    transparent 4.5px,
+    var(--andy-line-strong) 5px,
+    var(--andy-line-strong) 6px,
+    var(--andy-panel) 6.5px);
 }
 
 /* The strip does not span the whole header (the titlebar keeps room on
