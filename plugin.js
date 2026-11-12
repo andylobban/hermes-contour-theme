@@ -14,6 +14,15 @@ import { THEMES_AREA } from '@hermes/plugin-sdk'
  * string; the loader's scanner treats that as a real dependency.
  */
 
+// Every side zone: a tree group holding one of the side panes, but never
+// the main zone (the one whose tabs sit in the titlebar). Pane ids from a
+// plugin carry its id as a prefix.
+const SIDE_PANES = ['sessions', 'hermes-bots:pane', 'hermes-bots:routines', 'files', 'review']
+const SB =
+  '[data-tree-group]:is(' +
+  SIDE_PANES.map(id => `:has([data-tree-tab="${id}"])`).join(', ') +
+  '):not(:has([class*="app-region:drag"]))'
+
 const CUSTOM_CSS = String.raw`
 /* ── Light tokens ────────────────────────────────────────────────────── */
 :root:root:not(.dark) {
@@ -206,11 +215,13 @@ body {
   box-shadow: none;
 }
 
-/* ── Left sidebar zone ───────────────────────────────────────────────────
-   The zone that holds the Sessions tab, whichever tab is showing (Sessions,
-   Bots, or a plugin pane). Every pane in it sits on the frame color and
-   uses the sidebar text ramp, so switching tabs never changes the surface. */
-[data-tree-group]:has([data-tree-tab="sessions"]) {
+/* ── Sidebars ────────────────────────────────────────────────────────────
+   The SB selector (defined above CUSTOM_CSS) matches every side zone: the one with
+   Sessions/Bots on the left and the one with Scheduled jobs, Files or
+   Review on the right. All of them share one surface, one text ramp, one
+   tab control, one heading style and one search field, so the two sides
+   read as the same piece of chrome whichever tab is showing. */
+${SB} {
   --ui-bg-editor: var(--andy-frame);
   --ui-surface-background: var(--andy-frame);
   --ui-editor-surface-background: var(--andy-frame);
@@ -222,10 +233,10 @@ body {
   background: var(--andy-frame);
 }
 
-/* Sessions / Bots: a segmented control. The strip is anchored to the
-   bottom of the titlebar area, which leaves room for a 32px control below
-   the window buttons. It stays inside that area so nothing clips it. */
-[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] {
+/* Tab strip: a segmented control. The strip is anchored to the bottom of
+   the titlebar area, which leaves room for a 32px control below the window
+   buttons. It stays inside that area so nothing clips it. */
+${SB} [class*="group/pane-header"][class*="h-7"] {
   --pane-tab-strip-bg: transparent;
   --pane-tab-active-bg: var(--andy-seg-active);
   --pane-tab-active-accent: transparent;
@@ -236,11 +247,11 @@ body {
   border-radius: 8px;
 }
 
-[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [role="tablist"] {
+${SB} [class*="group/pane-header"][class*="h-7"] [role="tablist"] {
   gap: 4px;
 }
 
-[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] {
+${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] {
   flex: 1 1 0;
   max-width: none;
   height: 24px;
@@ -253,22 +264,24 @@ body {
   transition-duration: 120ms;
 }
 
-[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] > * {
+${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] > * {
   justify-content: center;
 }
 
-[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="true"] {
+${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="true"] {
   color: var(--andy-seg-ink);
 }
 
-[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="false"]:hover {
+${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="false"]:hover {
   --pane-tab-strip-bg: var(--andy-hover);
   box-shadow: none;
 }
 
-/* Section labels (Pinned, Sessions): quiet gray, sentence case, no
-   dithered dot. Matches the uppercase + 0.16em tracking pair. */
-.uppercase[class*="tracking-[0.16em]"] {
+/* Headings: every small uppercase, letter-spaced label in a sidebar
+   (Pinned, Sessions, BOTS, NETCUP VPS, SCHEDULED JOBS) becomes the same
+   quiet sentence-case label. Tab labels are excluded. */
+.uppercase[class*="tracking-[0.16em]"],
+${SB} .uppercase[class*="tracking-"]:not([data-slot="pane-tab"] *) {
   color: var(--andy-text-3);
   text-transform: none;
   letter-spacing: normal;
@@ -282,13 +295,9 @@ body {
 
 /* Date dividers (Earlier this week) read as children of Sessions:
    indented to the session titles, one step smaller. */
-.uppercase[class*="tracking-[0.12em]"] {
+${SB} .uppercase[class*="tracking-[0.12em]"]:not([data-slot="pane-tab"] *) {
   padding-left: 12px;
-  color: var(--andy-text-3);
-  text-transform: none;
-  letter-spacing: normal;
   font-size: 0.6875rem;
-  font-weight: 500;
 }
 
 /* Pinned shows only when something is pinned: hide the section while its
@@ -297,19 +306,21 @@ body {
   display: none;
 }
 
-/* Session rows: no bullet for quiet sessions. Hides the gray idle dot
+/* Rows: no bullet for quiet sessions or bots. Hides the gray idle dot
    (unless it carries a project color) and the hollow draft ring. Status
    dots that mean something (needs input, running, finished unread) stay.
-   visibility keeps the slot, so titles hold one left edge when a status
+   visibility keeps the slot, so names hold one left edge when a status
    dot appears. */
-[data-tour="sessions-sidebar"] span[aria-hidden="true"][class^="size-1 rounded-full"]:not([style*="background"]),
-[data-tour="sessions-sidebar"] span[class*="size-1.5"][class*="border-(--ui-text-quaternary)"] {
+${SB} span[aria-hidden="true"][class^="size-1 rounded-full"]:not([style*="background"]),
+${SB} span[class*="size-1.5"][class*="border-(--ui-text-quaternary)"] {
   visibility: hidden;
 }
 
-/* Search: a filled field, readable at rest. The stock field fades to 30%
-   opacity until focused. */
-[class*="opacity-30"][class*="focus-within:opacity-100"] {
+/* Search: the stock sidebar field is an underline that fades to 30-50%
+   opacity until focused. Here it is a filled field, readable at rest.
+   Matches the field's own focus-underline utility, which only the bare
+   search field carries. */
+${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"] {
   opacity: 1;
   width: 100%;
   height: 32px;
@@ -321,17 +332,21 @@ body {
   border-radius: 8px;
 }
 
-[class*="opacity-30"][class*="focus-within:opacity-100"]:hover {
+${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"]:hover {
   background: var(--andy-field-hover);
 }
 
-[class*="opacity-30"][class*="focus-within:opacity-100"]:focus-within {
+${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"]:focus-within {
   outline: 2px solid var(--andy-focus);
   outline-offset: 2px;
 }
 
-[class*="opacity-30"][class*="focus-within:opacity-100"] > input:focus-visible {
+${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"] > input:focus-visible {
   outline: none;
+}
+
+${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"] > input::placeholder {
+  color: var(--andy-sidebar-text-3);
 }
 
 /* ── Tooltips ────────────────────────────────────────────────────────── */
