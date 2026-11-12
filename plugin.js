@@ -386,11 +386,12 @@ ${SB} .row-hover > .cursor-pointer[class*="pl-3.5"] {
 }
 
 /* With the lead padding gone, the 14px dot slot sat flush on the band's
-   edge: dot centre 7px in, title 20px in. Nudge the slot 3px so the dot
-   centres at 10px, halfway between the band edge and the title. Inline
-   rows only; card and branch rows lay out differently. */
+   edge. Nudge it so the dot sits optically centred between the band edge
+   and the title's first glyph (which carries ~2.5px of side bearing past
+   the 20px text box). Measured on screen: 4.5px. Inline rows only; card
+   and branch rows lay out differently. */
 ${SB} .row-hover > .cursor-pointer:not([class*="flex-col"]):not([class*="pl-3.5"]) > :first-child {
-  translate: 3px 0;
+  translate: 4.5px 0;
 }
 
 /* Bot rows: bold name, and the preview line under it starts on the
