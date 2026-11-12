@@ -222,6 +222,15 @@ body {
   box-shadow: none;
 }
 
+/* Status dot in a titlebar tab: centred between the tab edge and the
+   title. Stock spacing put it 16px from the edge and 4px from the text.
+   Tab pad 8px + 2px = 10px before the 6px dot; 1px + the label's 8px
+   pad + ~1px glyph bearing = 10px after it. */
+[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"] span[class*="ml-2"][class*="-mr-1"] {
+  margin-left: 2px;
+  margin-right: 1px;
+}
+
 /* The active chat tab reads in bold. */
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"],
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"] * {
