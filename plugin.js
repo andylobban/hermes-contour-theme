@@ -148,9 +148,9 @@ const CUSTOM_CSS = String.raw`
   /* 8px corners on panels and fields (default scalar is 0.2) */
   --radius-scalar: 0.8;
 
-  /* Chat column: 960px max, centered. The transcript and the composer
+  /* Chat column: 800px max, centered. The transcript and the composer
      both read this one variable. */
-  --composer-width: 960px;
+  --composer-width: 800px;
 
   /* Pane tabs */
   --pane-tab-active-accent: var(--andy-text);
