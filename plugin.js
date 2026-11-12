@@ -222,6 +222,21 @@ body {
   box-shadow: none;
 }
 
+/* Browser-style outline: a 1px line runs along the bottom of the strip,
+   and the active tab is outlined on its top and sides. The active tab is
+   panel-colored and paints over the strip's line, so the line breaks under
+   it and the tab flows into the content below. */
+[class*="group/pane-header"][class*="app-region:drag"] {
+  box-shadow: inset 0 -1px 0 var(--andy-line-strong);
+}
+
+[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"] {
+  box-shadow:
+    inset 1px 0 0 var(--andy-line-strong),
+    inset -1px 0 0 var(--andy-line-strong),
+    inset 0 1px 0 var(--andy-line-strong);
+}
+
 /* Status dot in a titlebar tab: centred between the tab edge and the
    title. Stock spacing put it 16px from the edge and 4px from the text.
    Tab pad 8px + 2px = 10px before the 6px dot; 1px + the label's 8px
