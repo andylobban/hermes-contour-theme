@@ -385,6 +385,14 @@ ${SB} .row-hover > .cursor-pointer[class*="pl-3.5"] {
   padding-left: 6px;
 }
 
+/* With the lead padding gone, the 14px dot slot sat flush on the band's
+   edge: dot centre 7px in, title 20px in. Nudge the slot 3px so the dot
+   centres at 10px, halfway between the band edge and the title. Inline
+   rows only; card and branch rows lay out differently. */
+${SB} .row-hover > .cursor-pointer:not([class*="flex-col"]):not([class*="pl-3.5"]) > :first-child {
+  translate: 3px 0;
+}
+
 /* Bot rows: bold name, and the preview line under it starts on the
    name's left edge. The name follows a 14px status-dot slot and a 6px gap,
    so the second line moves in by the same 20px. */
