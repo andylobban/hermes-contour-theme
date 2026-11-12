@@ -61,7 +61,7 @@ customCSS: |
     --andy-text: #ededed;      /* 14.7:1 on panel */
     --andy-text-2: #b4b4b4;    /*  8.3:1 on panel */
     --andy-text-3: #9e9e9e;    /*  4.7:1 or better on every surface */
-    --andy-text-4: #6b6b6b;    /* decorative only */
+    --andy-text-4: #919191;    /*  4.6:1 on frame, 5.4:1 on panel */
     --andy-lime: #dff36f;
     --andy-lime-hover: #e8f78f;
     --andy-lime-ink: #1a1a1a;  /* 14.2:1 on lime */
@@ -180,7 +180,8 @@ customCSS: |
   /* ── Sidebar section labels (PINNED, SESSIONS) ──────────────────────
      Quiet gray, sentence case, no dithered dot. Matches the label's
      uppercase + 0.16em tracking utility pair. */
-  .uppercase[class*="tracking-[0.16em]"] {
+  .uppercase[class*="tracking-[0.16em]"],
+  .uppercase[class*="tracking-[0.12em]"] {
     color: var(--andy-text-3);
     text-transform: none;
     letter-spacing: normal;
@@ -190,6 +191,60 @@ customCSS: |
 
   .uppercase[class*="tracking-[0.16em]"] > .dither {
     display: none;
+  }
+
+  /* ── Sidebar search: a filled field, readable at rest ────────────────
+     The stock field fades to 30% opacity until focused. */
+  [class*="opacity-30"][class*="focus-within:opacity-100"] {
+    opacity: 1;
+    width: 100%;
+    height: 32px;
+    padding: 0 12px;
+    gap: 8px;
+    background: var(--andy-field);
+    border: 0;
+    border-radius: 8px;
+  }
+
+  [class*="opacity-30"][class*="focus-within:opacity-100"]:hover {
+    background: var(--andy-hover);
+  }
+
+  [class*="opacity-30"][class*="focus-within:opacity-100"]:focus-within {
+    outline: 2px solid var(--andy-lime);
+    outline-offset: 2px;
+  }
+
+  [class*="opacity-30"][class*="focus-within:opacity-100"] > input:focus-visible {
+    outline: none;
+  }
+
+  /* ── Panel tab strips (Sessions/Bots): segmented pill ────────────────
+     Titlebar strips keep the underline; these are the short h-7 strips. */
+  [class*="group/pane-header"][class*="h-7"] {
+    --pane-tab-strip-bg: transparent;
+    --pane-tab-active-bg: var(--andy-line-strong);
+    --pane-tab-active-accent: transparent;
+    height: 32px;
+    margin: 4px 8px 8px;
+    padding: 4px;
+    background: var(--andy-panel);
+    border-radius: 8px;
+  }
+
+  [class*="group/pane-header"][class*="h-7"] [role="tablist"] {
+    gap: 4px;
+  }
+
+  [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] {
+    border: 0;
+    border-radius: 6px;
+    box-shadow: none;
+  }
+
+  [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="false"]:hover {
+    --pane-tab-strip-bg: var(--andy-hover);
+    box-shadow: none;
   }
 
   /* ── Chat: user message on a raised gray card, no outline ─────────── */
