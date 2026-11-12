@@ -285,6 +285,16 @@ body {
   display: none;
 }
 
+/* Session rows: no bullet for quiet sessions. Hides the gray idle dot
+   (unless it carries a project color) and the hollow draft ring. Status
+   dots that mean something (needs input, running, finished unread) stay.
+   visibility keeps the slot, so titles hold one left edge when a status
+   dot appears. */
+[data-tour="sessions-sidebar"] span[aria-hidden="true"][class^="size-1 rounded-full"]:not([style*="background"]),
+[data-tour="sessions-sidebar"] span[class*="size-1.5"][class*="border-(--ui-text-quaternary)"] {
+  visibility: hidden;
+}
+
 /* Search: a filled field, readable at rest. The stock field fades to 30%
    opacity until focused. */
 [class*="opacity-30"][class*="focus-within:opacity-100"] {
