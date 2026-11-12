@@ -219,6 +219,9 @@ body {
 }
 
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"] {
+  /* 12px, measured against the reference: its capitals are 18px tall at 2x
+     where 13px tab text measured 20px. */
+  font-size: 0.75rem;
   padding: 0 8px;
   border-radius: 8px 8px 0 0;
   box-shadow: none;
@@ -246,12 +249,6 @@ body {
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"] span[class*="ml-2"][class*="-mr-1"] {
   margin-left: 2px;
   margin-right: 1px;
-}
-
-/* The active chat tab reads in bold. */
-[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"],
-[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"] * {
-  font-weight: 700;
 }
 
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="false"]:hover {
