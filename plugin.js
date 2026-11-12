@@ -368,6 +368,23 @@ ${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"] > input::plac
   color: var(--andy-sidebar-text-3);
 }
 
+/* Session rows: the hover and selected band lines up with the search
+   field. Rows span the sidebar content box, but the search field sits in a
+   further 8px inset, so the band starts 8px in. The row's own 8px lead
+   padding comes out by the same amount, so titles do not move. Branch
+   rows keep their extra 6px of indent. */
+${SB} .row-hover {
+  margin-left: 8px;
+}
+
+${SB} .row-hover > .cursor-pointer {
+  padding-left: 0;
+}
+
+${SB} .row-hover > .cursor-pointer[class*="pl-3.5"] {
+  padding-left: 6px;
+}
+
 /* Bot rows: bold name, and the preview line under it starts on the
    name's left edge. The name follows a 14px status-dot slot and a 6px gap,
    so the second line moves in by the same 20px. */
