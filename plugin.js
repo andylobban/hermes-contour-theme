@@ -49,6 +49,11 @@ const CUSTOM_CSS = String.raw`
   --andy-cta-hover: #333333;
   --andy-cta-press: #000000;
   --andy-cta-ink: #ffffff;    /* 17.4:1 on the fill */
+  --andy-round-bg: #404040;   /* voice / send button, one step quieter */
+  --andy-round-hover: #2b2b2b;
+  --andy-round-ink: #ffffff;  /* 10.4:1 */
+  --andy-badge-bg: #dedede;   /* Sign in and other solid badges */
+  --andy-badge-ink: #333333;  /* 9.4:1 */
   --andy-ring-quiet: #949494; /* composer outline, 3.0:1 on white */
   --andy-seg-track: #e4e4e4;
   --andy-seg-active: #ffffff;
@@ -84,6 +89,11 @@ const CUSTOM_CSS = String.raw`
   --andy-cta-hover: #e6e6e6;
   --andy-cta-press: #cccccc;
   --andy-cta-ink: #1a1a1a;    /* 17.4:1 on the fill */
+  --andy-round-bg: #bdbdbd;   /* voice / send button, one step quieter */
+  --andy-round-hover: #cccccc;
+  --andy-round-ink: #1a1a1a;  /* 9.3:1 */
+  --andy-badge-bg: #383838;   /* Sign in and other solid badges */
+  --andy-badge-ink: #cfcfcf;  /* 7.5:1 */
   --andy-ring-quiet: #6b6b6b; /* composer outline, 3.2:1 */
   --andy-seg-track: #1b1b1b;
   --andy-seg-active: #3a3a3a;
@@ -398,6 +408,32 @@ ${SB} [data-roster-key] > .flex-1 > div:nth-child(2) {
 
 [data-slot="button"]:not([data-variant="default"]) {
   border-radius: 6px;
+}
+
+/* ── Composer round button (voice, send): softer than the full accent ── */
+[data-slot="button"][class*="bg-foreground"] {
+  background: var(--andy-round-bg);
+  color: var(--andy-round-ink);
+  border-radius: 999px;
+}
+
+[data-slot="button"][class*="bg-foreground"][class*="rounded-r-none"] {
+  border-radius: 999px 0 0 999px;
+}
+
+[data-slot="button"][class*="bg-foreground"]:hover {
+  background: var(--andy-round-hover);
+}
+
+[data-slot="button"][class*="bg-foreground"]:disabled {
+  background: var(--andy-round-bg);
+  opacity: 0.4;
+}
+
+/* ── Solid badges (Sign in): a quiet gray chip, not an accent fill ───── */
+[data-slot="badge"][class*="bg-primary"] {
+  background: var(--andy-badge-bg);
+  color: var(--andy-badge-ink);
 }
 
 /* ── Segmented tabs (Radix): track with a raised pill ────────────────── */
