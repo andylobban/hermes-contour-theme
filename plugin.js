@@ -421,6 +421,19 @@ ${SB} [data-roster-key] > .flex-1 > div:nth-child(2) {
   border-radius: 6px;
 }
 
+/* The stuck prompt clips everything scrolling beneath it across the full
+   column width, which made sense for a full-width bubble. With a 70%
+   bubble on the right, that hid reply text to its left. Drop the clip and
+   give the bubble an opaque fill instead: text scrolls past on the left
+   and only the bubble itself covers what is under it. */
+:root [data-sticky-prompt-clip] {
+  clip-path: none;
+}
+
+[data-slot="aui_user-message-root"] .composer-human-message.cursor-pointer {
+  background: var(--andy-raised);
+}
+
 /* ── Composer round button (voice, send): softer than the full accent ── */
 [data-slot="button"][class*="bg-foreground"] {
   background: var(--andy-round-bg);
