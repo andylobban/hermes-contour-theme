@@ -209,7 +209,9 @@ body {
   --pane-tab-active-bg: var(--andy-panel);
   --pane-tab-strip-bg: transparent;
   --pane-tab-active-accent: transparent;
-  padding-top: 8px;
+  /* Tabs start 4px under the window top, like a browser, so the label has
+     room to breathe inside a taller tab. */
+  padding-top: 4px;
 }
 
 [class*="group/pane-header"][class*="app-region:drag"] [role="tablist"] {
