@@ -170,7 +170,8 @@ const CUSTOM_CSS = String.raw`
 
   /* Chat column: 800px max, centered. The transcript and the composer
      both read this one variable. */
-  --composer-width: 800px;
+  --andy-column: 800px;
+  --composer-width: var(--andy-column);
 
   /* Pane tabs */
   --pane-tab-active-accent: var(--andy-text);
@@ -434,6 +435,20 @@ ${SB} [data-roster-key] > .flex-1 > div:nth-child(2) {
 
 [data-slot="button"]:not([data-variant="default"]) {
   border-radius: 6px;
+}
+
+/* ── Composer: same edges as the text column ────────────────────────────
+   The transcript column is min(800px, pane) with 24px padding each side,
+   so its text runs min(800px, pane) - 48px wide. The composer dock used the
+   full 800px. Match the text, keeping the dock's 10px drag margin
+   (5px each side, outside the visible box). */
+[data-slot="composer-dock"] {
+  --composer-width: calc(var(--andy-column) - 3rem);
+  width: calc(min(var(--andy-column), 100%) - 3rem + 10px);
+}
+
+[data-slot="composer-root"]:not([data-slot="composer-dock"] *) {
+  --composer-width: calc(var(--andy-column) - 3rem);
 }
 
 /* ── User messages: right-aligned bubbles, at most 70% of the column ──
