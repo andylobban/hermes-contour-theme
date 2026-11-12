@@ -1,7 +1,8 @@
 import { THEMES_AREA } from '@hermes/plugin-sdk'
 
 /**
- * Andy Desktop: charcoal and lime in dark, paper and olive in light.
+ * Andy Desktop: monochrome. Charcoal with white accents in dark, paper with
+ * near-black accents in light.
  *
  * The palettes below paint the app's seed colors. CUSTOM_CSS then pins the
  * exact surfaces and restyles tabs, the sidebar, fields and tooltips. Every
@@ -32,8 +33,12 @@ const CUSTOM_CSS = String.raw`
   --andy-sidebar-text: #111111;
   --andy-sidebar-text-2: #2b2b2b;
   --andy-sidebar-text-3: #555555; /* 5.8:1 on active rows */
-  --andy-accent-ink: #4a6400; /* olive: links, focus, status text; 5.2:1+ */
-  --andy-focus: #4a6400;
+  --andy-accent-ink: #1a1a1a; /* links, status text */
+  --andy-focus: #1a1a1a;
+  --andy-cta: #1a1a1a;        /* primary button fill */
+  --andy-cta-hover: #333333;
+  --andy-cta-press: #000000;
+  --andy-cta-ink: #ffffff;    /* 17.4:1 on the fill */
   --andy-ring-quiet: #949494; /* composer outline, 3.0:1 on white */
   --andy-seg-track: #e4e4e4;
   --andy-seg-active: #ffffff;
@@ -42,8 +47,7 @@ const CUSTOM_CSS = String.raw`
   --andy-tip-ink: #f5f5f5;
   --andy-scroll: #c4c4c4;
   --andy-code-bg: #f0f0f0;
-  --andy-selection: color-mix(in srgb, #dff36f 70%, transparent);
-  --andy-button-edge: inset 0 0 0 1px color-mix(in srgb, #4a6400 22%, transparent);
+  --andy-selection: color-mix(in srgb, #1a1a1a 14%, transparent);
 }
 
 /* ── Dark tokens ─────────────────────────────────────────────────────── */
@@ -64,8 +68,12 @@ const CUSTOM_CSS = String.raw`
   --andy-sidebar-text: #f5f5f5;   /* 13.9:1 on frame */
   --andy-sidebar-text-2: #e6e6e6; /* 12.1:1 */
   --andy-sidebar-text-3: #b8b8b8; /*  6.4:1 on active rows */
-  --andy-accent-ink: #dff36f;
-  --andy-focus: #dff36f;
+  --andy-accent-ink: #ffffff;
+  --andy-focus: #ffffff;
+  --andy-cta: #ffffff;        /* primary button fill */
+  --andy-cta-hover: #e6e6e6;
+  --andy-cta-press: #cccccc;
+  --andy-cta-ink: #1a1a1a;    /* 17.4:1 on the fill */
   --andy-ring-quiet: #6b6b6b; /* composer outline, 3.2:1 */
   --andy-seg-track: #1b1b1b;
   --andy-seg-active: #3a3a3a;
@@ -74,16 +82,11 @@ const CUSTOM_CSS = String.raw`
   --andy-tip-ink: #ededed;
   --andy-scroll: #4a4a4a;
   --andy-code-bg: #2a2a2a;
-  --andy-selection: color-mix(in srgb, #dff36f 28%, transparent);
-  --andy-button-edge: none;
+  --andy-selection: color-mix(in srgb, #ffffff 22%, transparent);
 }
 
 /* ── Shared tokens ───────────────────────────────────────────────────── */
 :root:root {
-  --andy-lime: #dff36f;
-  --andy-lime-hover: #e8f78f;
-  --andy-lime-ink: #1a1a1a;   /* 14.2:1 on lime */
-
   /* Neutral grays everywhere: drop the accent tint from fills and lines */
   --theme-fill-primary-accent-mix: 0%;
   --theme-fill-secondary-accent-mix: 0%;
@@ -334,20 +337,19 @@ body {
   fill: var(--andy-tip-bg);
 }
 
-/* ── Primary button: lime with dark ink in both modes ────────────────── */
+/* ── Primary button: the accent fill with inverse ink ────────────────── */
 [data-slot="button"][data-variant="default"] {
-  background: var(--andy-lime);
-  color: var(--andy-lime-ink);
+  background: var(--andy-cta);
+  color: var(--andy-cta-ink);
   border-radius: 6px;
-  box-shadow: var(--andy-button-edge);
 }
 
 [data-slot="button"][data-variant="default"]:hover {
-  background: var(--andy-lime-hover);
+  background: var(--andy-cta-hover);
 }
 
 [data-slot="button"][data-variant="default"]:active {
-  background: color-mix(in srgb, var(--andy-lime) 88%, #000);
+  background: var(--andy-cta-press);
 }
 
 [data-slot="button"]:not([data-variant="default"]) {
@@ -422,9 +424,7 @@ const light = {
   mutedForeground: '#595959',
   popover: '#f5f5f5',
   popoverForeground: '#1a1a1a',
-  // Olive, not lime: primary also colors text and rings, and lime on white
-  // is 1.2:1. The lime button fill comes from CUSTOM_CSS.
-  primary: '#4a6400',
+  primary: '#1a1a1a',
   primaryForeground: '#ffffff',
   secondary: '#e2e2e2',
   secondaryForeground: '#1a1a1a',
@@ -432,8 +432,8 @@ const light = {
   accentForeground: '#1a1a1a',
   border: '#e4e4e4',
   input: '#ffffff',
-  ring: '#4a6400',
-  midground: '#4a6400',
+  ring: '#1a1a1a',
+  midground: '#1a1a1a',
   midgroundForeground: '#ffffff',
   composerRing: '#949494',
   destructive: '#c62828',
@@ -453,7 +453,7 @@ const dark = {
   mutedForeground: '#9e9e9e',
   popover: '#2c2c2c',
   popoverForeground: '#ededed',
-  primary: '#dff36f',
+  primary: '#ffffff',
   primaryForeground: '#1a1a1a',
   secondary: '#333333',
   secondaryForeground: '#ededed',
@@ -461,8 +461,8 @@ const dark = {
   accentForeground: '#ededed',
   border: '#2e2e2e',
   input: '#2e2e2e',
-  ring: '#dff36f',
-  midground: '#dff36f',
+  ring: '#ffffff',
+  midground: '#ffffff',
   midgroundForeground: '#1a1a1a',
   composerRing: '#6b6b6b',
   destructive: '#f26b6b',
@@ -476,7 +476,7 @@ const dark = {
 const theme = {
   name: 'andy-desktop',
   label: 'Andy Desktop',
-  description: 'Charcoal and lime in dark, paper and olive in light',
+  description: 'Monochrome: charcoal and white in dark, paper and black in light',
   colors: light,
   darkColors: dark,
   customCSS: CUSTOM_CSS,
