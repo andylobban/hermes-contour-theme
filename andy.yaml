@@ -146,15 +146,19 @@ customCSS: |
     --dt-muted: var(--andy-frame) !important;
   }
 
-  /* ── Frame + inset panel ────────────────────────────────────────────
-     The window frame is the lighter charcoal; content sits on a darker
-     panel with rounded corners, like a card set into the frame. */
+  /* ── Frame ──────────────────────────────────────────────────────────── */
   body {
     background: var(--andy-frame);
   }
 
-  /* ── Pane tabs (titlebar, Sessions/Bots) ────────────────────────────
-     Sentence case, white underline on the active tab, no blue. */
+  /* ── Chat column: 1280px max, centered. The transcript and the
+     composer both read this one variable. */
+  :root:root {
+    --composer-width: 1280px;
+  }
+
+  /* ── Pane tabs, shared ───────────────────────────────────────────────
+     Sentence case, no separators, no blue. */
   :root:root {
     --pane-tab-active-accent: var(--andy-text);
     --pane-tab-strip-bg: var(--andy-frame);
@@ -163,6 +167,7 @@ customCSS: |
 
   [data-slot="pane-tab"] {
     font-size: 0.8125rem;
+    border-left-width: 0;
   }
 
   [data-slot="pane-tab"] .uppercase {
@@ -178,11 +183,79 @@ customCSS: |
     color: var(--andy-text);
   }
 
-  /* ── Sidebar section labels (PINNED, SESSIONS) ──────────────────────
-     Quiet gray, sentence case, no dithered dot. Matches the label's
-     uppercase + 0.16em tracking utility pair. */
-  .uppercase[class*="tracking-[0.16em]"],
-  .uppercase[class*="tracking-[0.12em]"] {
+  /* ── Titlebar tabs: browser-style, like the reference ────────────────
+     The active tab is a panel-colored tab with rounded top corners that
+     flows into the content below. Inactive tabs sit on the frame. */
+  [class*="group/pane-header"][class*="app-region:drag"] {
+    --pane-tab-active-bg: var(--andy-panel);
+    --pane-tab-strip-bg: transparent;
+    --pane-tab-active-accent: transparent;
+    padding-top: 8px;
+  }
+
+  [class*="group/pane-header"][class*="app-region:drag"] [role="tablist"] {
+    gap: 4px;
+  }
+
+  [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"] {
+    padding: 0 8px;
+    border-radius: 8px 8px 0 0;
+    box-shadow: none;
+  }
+
+  [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="false"]:hover {
+    --pane-tab-strip-bg: var(--andy-hover);
+    box-shadow: none;
+  }
+
+  /* ── Sessions sidebar ────────────────────────────────────────────────
+     Scoped to the sidebar's own zone so other panes keep their tabs. */
+  [data-tour="sessions-sidebar"] {
+    --ui-text-primary: #f5f5f5;    /* 13.9:1 on frame */
+    --ui-text-secondary: #e6e6e6;  /* 12.1:1 */
+    --ui-text-tertiary: #b8b8b8;   /*  7.6:1 */
+  }
+
+  /* Make room under the window buttons for the segmented tabs. */
+  [data-tour="sessions-sidebar"] [data-slot="sidebar-content"] > [data-slot="sidebar-group"]:first-child {
+    padding-top: calc(var(--titlebar-height) + 0.375rem + 16px);
+  }
+
+  /* Sessions / Bots: segmented pill. The strip is anchored to the bottom
+     of the titlebar area, so it moves down 12px to clear the window
+     buttons and the nav above moves down to match. */
+  [data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] {
+    --pane-tab-strip-bg: transparent;
+    --pane-tab-active-bg: var(--andy-line-strong);
+    --pane-tab-active-accent: transparent;
+    bottom: -12px;
+    height: 32px;
+    margin: 0 10px;
+    padding: 4px;
+    background: var(--andy-panel);
+    border-radius: 8px;
+  }
+
+  [data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] [role="tablist"] {
+    gap: 4px;
+  }
+
+  [data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] {
+    flex: 1 1 0;
+    max-width: none;
+    justify-content: center;
+    border-radius: 6px;
+    box-shadow: none;
+  }
+
+  [data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="false"]:hover {
+    --pane-tab-strip-bg: var(--andy-hover);
+    box-shadow: none;
+  }
+
+  /* Section labels (Pinned, Sessions): quiet gray, sentence case, no
+     dithered dot. Matches the uppercase + 0.16em tracking pair. */
+  .uppercase[class*="tracking-[0.16em]"] {
     color: var(--andy-text-3);
     text-transform: none;
     letter-spacing: normal;
@@ -194,12 +267,30 @@ customCSS: |
     display: none;
   }
 
-  /* ── Sidebar search: a filled field, readable at rest ────────────────
-     The stock field fades to 30% opacity until focused. */
+  /* Date dividers (Earlier this week) read as children of Sessions:
+     indented to the session titles, one step smaller. */
+  .uppercase[class*="tracking-[0.12em]"] {
+    padding-left: 12px;
+    color: var(--andy-text-3);
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 0.6875rem;
+    font-weight: 500;
+  }
+
+  /* Pinned shows only when something is pinned: hide the section while
+     its only content is the empty hint. */
+  [data-session-pin-drop]:has(> [data-slot="sidebar-group-content"] > div:only-child > span > .codicon-pin) {
+    display: none;
+  }
+
+  /* Search: a filled field, readable at rest. The stock field fades to
+     30% opacity until focused. */
   [class*="opacity-30"][class*="focus-within:opacity-100"] {
     opacity: 1;
     width: 100%;
     height: 32px;
+    margin-bottom: 8px;
     padding: 0 12px;
     gap: 8px;
     background: var(--andy-field);
@@ -220,32 +311,15 @@ customCSS: |
     outline: none;
   }
 
-  /* ── Panel tab strips (Sessions/Bots): segmented pill ────────────────
-     Titlebar strips keep the underline; these are the short h-7 strips. */
-  [class*="group/pane-header"][class*="h-7"] {
-    --pane-tab-strip-bg: transparent;
-    --pane-tab-active-bg: var(--andy-line-strong);
-    --pane-tab-active-accent: transparent;
-    height: 32px;
-    margin: 4px 8px 8px;
-    padding: 4px;
-    background: var(--andy-panel);
-    border-radius: 8px;
+  /* ── Tooltips: light text on the raised gray, matching arrow ───────── */
+  [data-slot="tooltip-content"] {
+    color: var(--andy-text);
+    box-shadow: 0 0 0 1px var(--andy-line-strong);
   }
 
-  [class*="group/pane-header"][class*="h-7"] [role="tablist"] {
-    gap: 4px;
-  }
-
-  [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] {
-    border: 0;
-    border-radius: 6px;
-    box-shadow: none;
-  }
-
-  [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="false"]:hover {
-    --pane-tab-strip-bg: var(--andy-hover);
-    box-shadow: none;
+  [data-slot="tooltip-arrow"],
+  [data-slot="tooltip-arrow"] path {
+    fill: var(--andy-raised);
   }
 
   /* ── Chat: user message on a raised gray card, no outline ─────────── */
