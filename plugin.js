@@ -206,17 +206,26 @@ body {
   box-shadow: none;
 }
 
-/* ── Sessions sidebar ────────────────────────────────────────────────── */
-[data-tour="sessions-sidebar"] {
+/* ── Left sidebar zone ───────────────────────────────────────────────────
+   The zone that holds the Sessions tab, whichever tab is showing (Sessions,
+   Bots, or a plugin pane). Every pane in it sits on the frame color and
+   uses the sidebar text ramp, so switching tabs never changes the surface. */
+[data-tree-group]:has([data-tree-tab="sessions"]) {
+  --ui-bg-editor: var(--andy-frame);
+  --ui-surface-background: var(--andy-frame);
+  --ui-editor-surface-background: var(--andy-frame);
+  --ui-chat-surface-background: var(--andy-frame);
+  --ui-widget-surface-background: var(--andy-frame);
   --ui-text-primary: var(--andy-sidebar-text);
   --ui-text-secondary: var(--andy-sidebar-text-2);
   --ui-text-tertiary: var(--andy-sidebar-text-3);
+  background: var(--andy-frame);
 }
 
 /* Sessions / Bots: a segmented control. The strip is anchored to the
    bottom of the titlebar area, which leaves room for a 32px control below
    the window buttons. It stays inside that area so nothing clips it. */
-[data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] {
+[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] {
   --pane-tab-strip-bg: transparent;
   --pane-tab-active-bg: var(--andy-seg-active);
   --pane-tab-active-accent: transparent;
@@ -227,11 +236,11 @@ body {
   border-radius: 8px;
 }
 
-[data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] [role="tablist"] {
+[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [role="tablist"] {
   gap: 4px;
 }
 
-[data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] {
+[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] {
   flex: 1 1 0;
   max-width: none;
   height: 24px;
@@ -244,15 +253,15 @@ body {
   transition-duration: 120ms;
 }
 
-[data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] > * {
+[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] > * {
   justify-content: center;
 }
 
-[data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="true"] {
+[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="true"] {
   color: var(--andy-seg-ink);
 }
 
-[data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="false"]:hover {
+[data-tree-group]:has([data-tree-tab="sessions"]) [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="false"]:hover {
   --pane-tab-strip-bg: var(--andy-hover);
   box-shadow: none;
 }
