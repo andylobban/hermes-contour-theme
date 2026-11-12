@@ -301,9 +301,11 @@ ${SB} .uppercase[class*="tracking-"]:not([data-slot="pane-tab"] *) {
 }
 
 /* Date dividers (Earlier this week) read as children of Sessions:
-   indented to the session titles, one step smaller. */
+   indented to the session titles, one step smaller. A title starts 28px
+   into its row (8px pad + 14px dot slot + 6px gap); the divider row has
+   its own 8px pad, so its text moves in the remaining 20px. */
 ${SB} .uppercase[class*="tracking-[0.12em]"]:not([data-slot="pane-tab"] *) {
-  padding-left: 12px;
+  padding-left: 20px;
   font-size: 0.6875rem;
 }
 
