@@ -247,36 +247,39 @@ body {
     inset 0 1px 0 var(--andy-line-strong);
 }
 
-/* Bottom flares: a concave 6px curve on each side of the active tab
-   carries its outline into the baseline, like a browser tab. Each is a
-   6px square just outside the tab's bottom corner: transparent inside a
-   6px circle, a 1px ring in the line color, panel color beyond it. */
+/* Bottom flares: a concave curve on each side of the active tab carries
+   its outline into the baseline, like a browser tab. Each is a 7px square
+   that overlaps the tab by 1px: transparent inside a 7px circle, a 1px
+   ring in the line color, panel color beyond. The overlap paints panel
+   over the bottom of the tab's straight side border, so the outline turns
+   into the curve instead of running past it, and the ring's top end lands
+   on that border. */
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"]::before,
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"]::after {
   content: "";
   position: absolute;
   bottom: 0;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   pointer-events: none;
 }
 
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"]::before {
   left: -6px;
   background: radial-gradient(circle at 0 0,
-    transparent 4.5px,
-    var(--andy-line-strong) 5px,
+    transparent 5.5px,
     var(--andy-line-strong) 6px,
-    var(--andy-panel) 6.5px);
+    var(--andy-line-strong) 7px,
+    var(--andy-panel) 7.5px);
 }
 
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"]::after {
   right: -6px;
   background: radial-gradient(circle at 100% 0,
-    transparent 4.5px,
-    var(--andy-line-strong) 5px,
+    transparent 5.5px,
     var(--andy-line-strong) 6px,
-    var(--andy-panel) 6.5px);
+    var(--andy-line-strong) 7px,
+    var(--andy-panel) 7.5px);
 }
 
 /* The strip does not span the whole header (the titlebar keeps room on
