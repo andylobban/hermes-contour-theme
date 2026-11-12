@@ -229,11 +229,17 @@ customCSS: |
     --pane-tab-active-bg: var(--andy-line-strong);
     --pane-tab-active-accent: transparent;
     bottom: -12px;
+    z-index: 20;               /* paint over the sidebar body it overlaps */
     height: 32px;
     margin: 0 10px;
     padding: 4px;
     background: var(--andy-panel);
     border-radius: 8px;
+  }
+
+  [data-tree-group]:has([data-tour="sessions-sidebar"]) [data-panel-header] {
+    z-index: 20;
+    overflow: visible;
   }
 
   [data-tree-group]:has([data-tour="sessions-sidebar"]) [class*="group/pane-header"][class*="h-7"] [role="tablist"] {
