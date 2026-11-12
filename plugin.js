@@ -211,6 +211,12 @@ body {
   box-shadow: none;
 }
 
+/* The active chat tab reads in bold. */
+[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"],
+[class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"] * {
+  font-weight: 600;
+}
+
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="false"]:hover {
   --pane-tab-strip-bg: var(--andy-hover);
   box-shadow: none;
@@ -348,6 +354,17 @@ ${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"] > input:focus
 
 ${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"] > input::placeholder {
   color: var(--andy-sidebar-text-3);
+}
+
+/* Bot rows: bold name, and the preview line under it starts on the
+   name's left edge. The name follows a 14px status-dot slot and a 6px gap,
+   so the second line moves in by the same 20px. */
+${SB} [data-roster-key] > .flex-1 > div:first-child span.font-medium {
+  font-weight: 600;
+}
+
+${SB} [data-roster-key] > .flex-1 > div:nth-child(2) {
+  padding-left: 20px;
 }
 
 /* ── Tooltips ────────────────────────────────────────────────────────── */
