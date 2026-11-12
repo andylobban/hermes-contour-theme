@@ -1,12 +1,12 @@
 import { THEMES_AREA } from '@hermes/plugin-sdk'
 
 /**
- * Andy Desktop: monochrome. Charcoal with white accents in dark, paper with
+ * Contour: monochrome. Charcoal with white accents in dark, paper with
  * near-black accents in light.
  *
  * The palettes below paint the app's seed colors. CUSTOM_CSS then pins the
  * exact surfaces and restyles tabs, the sidebar, fields and tooltips. Every
- * rule reads --andy-* variables, and only the two variable blocks at the top
+ * rule reads --contour-* variables, and only the two variable blocks at the top
  * of the CSS differ by mode.
  *
  * Loader rules: this file is evaluated uncompiled. Keep it to one file, and
@@ -30,82 +30,82 @@ const MAIN = '[data-tree-group]:has(> [data-panel-header] [class*="group/pane-he
 const CUSTOM_CSS = String.raw`
 /* ── Light tokens ────────────────────────────────────────────────────── */
 :root:root:not(.dark) {
-  --andy-frame: #efefef;      /* titlebar, sidebar, window edge */
-  --andy-panel: #ffffff;      /* main content panel */
-  --andy-raised: #f5f5f5;     /* user message, popovers */
-  --andy-field: #ffffff;      /* fields sit white on the frame */
-  --andy-field-hover: #fafafa;
-  --andy-hover: #e7e7e7;
-  --andy-active: #e2e2e2;
-  --andy-line: #e4e4e4;
-  --andy-line-strong: #d6d6d6;
-  --andy-text: #1a1a1a;       /* 17.4:1 on panel */
-  --andy-text-2: #454545;     /*  7.4:1 or better */
-  --andy-text-3: #595959;     /*  5.9:1 on active rows */
-  --andy-text-4: #636363;     /*  4.6:1 on active rows */
-  --andy-sidebar-text: #111111;
-  --andy-sidebar-text-2: #2b2b2b;
-  --andy-sidebar-text-3: #555555; /* 5.8:1 on active rows */
-  --andy-accent-ink: #1a1a1a; /* links, status text */
-  --andy-focus: #1a1a1a;
-  --andy-cta: #1a1a1a;        /* primary button fill */
-  --andy-cta-hover: #333333;
-  --andy-cta-press: #000000;
-  --andy-cta-ink: #ffffff;    /* 17.4:1 on the fill */
-  --andy-round-bg: #404040;   /* voice / send button, one step quieter */
-  --andy-round-hover: #2b2b2b;
-  --andy-round-ink: #ffffff;  /* 10.4:1 */
-  --andy-badge-bg: #dedede;   /* Sign in and other solid badges */
-  --andy-badge-ink: #333333;  /* 9.4:1 */
-  --andy-ring-quiet: #949494; /* composer outline, 3.0:1 on white */
-  --andy-seg-track: #e4e4e4;
-  --andy-seg-active: #ffffff;
-  --andy-seg-ink: #1a1a1a;
-  --andy-tip-bg: #1f1f1f;
-  --andy-tip-ink: #f5f5f5;
-  --andy-scroll: #c4c4c4;
-  --andy-code-bg: #f0f0f0;
-  --andy-selection: color-mix(in srgb, #1a1a1a 14%, transparent);
+  --contour-frame: #efefef;      /* titlebar, sidebar, window edge */
+  --contour-panel: #ffffff;      /* main content panel */
+  --contour-raised: #f5f5f5;     /* user message, popovers */
+  --contour-field: #ffffff;      /* fields sit white on the frame */
+  --contour-field-hover: #fafafa;
+  --contour-hover: #e7e7e7;
+  --contour-active: #e2e2e2;
+  --contour-line: #e4e4e4;
+  --contour-line-strong: #d6d6d6;
+  --contour-text: #1a1a1a;       /* 17.4:1 on panel */
+  --contour-text-2: #454545;     /*  7.4:1 or better */
+  --contour-text-3: #595959;     /*  5.9:1 on active rows */
+  --contour-text-4: #636363;     /*  4.6:1 on active rows */
+  --contour-sidebar-text: #111111;
+  --contour-sidebar-text-2: #2b2b2b;
+  --contour-sidebar-text-3: #555555; /* 5.8:1 on active rows */
+  --contour-accent-ink: #1a1a1a; /* links, status text */
+  --contour-focus: #1a1a1a;
+  --contour-cta: #1a1a1a;        /* primary button fill */
+  --contour-cta-hover: #333333;
+  --contour-cta-press: #000000;
+  --contour-cta-ink: #ffffff;    /* 17.4:1 on the fill */
+  --contour-round-bg: #404040;   /* voice / send button, one step quieter */
+  --contour-round-hover: #2b2b2b;
+  --contour-round-ink: #ffffff;  /* 10.4:1 */
+  --contour-badge-bg: #dedede;   /* Sign in and other solid badges */
+  --contour-badge-ink: #333333;  /* 9.4:1 */
+  --contour-ring-quiet: #949494; /* composer outline, 3.0:1 on white */
+  --contour-seg-track: #e4e4e4;
+  --contour-seg-active: #ffffff;
+  --contour-seg-ink: #1a1a1a;
+  --contour-tip-bg: #1f1f1f;
+  --contour-tip-ink: #f5f5f5;
+  --contour-scroll: #c4c4c4;
+  --contour-code-bg: #f0f0f0;
+  --contour-selection: color-mix(in srgb, #1a1a1a 14%, transparent);
 }
 
 /* ── Dark tokens ─────────────────────────────────────────────────────── */
 :root:root.dark {
-  --andy-frame: #262626;
-  --andy-panel: #1b1b1b;
-  --andy-raised: #2c2c2c;
-  --andy-field: #2e2e2e;      /* 5.1:1 for the placeholder */
-  --andy-field-hover: #333333;
-  --andy-hover: #2a2a2a;
-  --andy-active: #333333;
-  --andy-line: #2e2e2e;
-  --andy-line-strong: #3a3a3a;
-  --andy-text: #ededed;       /* 14.7:1 on panel */
-  --andy-text-2: #b4b4b4;     /*  8.3:1 on panel */
-  --andy-text-3: #9e9e9e;     /*  4.7:1 or better on every surface */
-  --andy-text-4: #919191;     /*  4.6:1 on frame */
-  --andy-sidebar-text: #f5f5f5;   /* 13.9:1 on frame */
-  --andy-sidebar-text-2: #e6e6e6; /* 12.1:1 */
-  --andy-sidebar-text-3: #b8b8b8; /*  6.4:1 on active rows */
-  --andy-accent-ink: #ffffff;
-  --andy-focus: #ffffff;
-  --andy-cta: #ffffff;        /* primary button fill */
-  --andy-cta-hover: #e6e6e6;
-  --andy-cta-press: #cccccc;
-  --andy-cta-ink: #1a1a1a;    /* 17.4:1 on the fill */
-  --andy-round-bg: #bdbdbd;   /* voice / send button, one step quieter */
-  --andy-round-hover: #cccccc;
-  --andy-round-ink: #1a1a1a;  /* 9.3:1 */
-  --andy-badge-bg: #383838;   /* Sign in and other solid badges */
-  --andy-badge-ink: #cfcfcf;  /* 7.5:1 */
-  --andy-ring-quiet: #6b6b6b; /* composer outline, 3.2:1 */
-  --andy-seg-track: #1b1b1b;
-  --andy-seg-active: #3a3a3a;
-  --andy-seg-ink: #f5f5f5;
-  --andy-tip-bg: #2c2c2c;
-  --andy-tip-ink: #ededed;
-  --andy-scroll: #4a4a4a;
-  --andy-code-bg: #2a2a2a;
-  --andy-selection: color-mix(in srgb, #ffffff 22%, transparent);
+  --contour-frame: #262626;
+  --contour-panel: #1b1b1b;
+  --contour-raised: #2c2c2c;
+  --contour-field: #2e2e2e;      /* 5.1:1 for the placeholder */
+  --contour-field-hover: #333333;
+  --contour-hover: #2a2a2a;
+  --contour-active: #333333;
+  --contour-line: #2e2e2e;
+  --contour-line-strong: #3a3a3a;
+  --contour-text: #ededed;       /* 14.7:1 on panel */
+  --contour-text-2: #b4b4b4;     /*  8.3:1 on panel */
+  --contour-text-3: #9e9e9e;     /*  4.7:1 or better on every surface */
+  --contour-text-4: #919191;     /*  4.6:1 on frame */
+  --contour-sidebar-text: #f5f5f5;   /* 13.9:1 on frame */
+  --contour-sidebar-text-2: #e6e6e6; /* 12.1:1 */
+  --contour-sidebar-text-3: #b8b8b8; /*  6.4:1 on active rows */
+  --contour-accent-ink: #ffffff;
+  --contour-focus: #ffffff;
+  --contour-cta: #ffffff;        /* primary button fill */
+  --contour-cta-hover: #e6e6e6;
+  --contour-cta-press: #cccccc;
+  --contour-cta-ink: #1a1a1a;    /* 17.4:1 on the fill */
+  --contour-round-bg: #bdbdbd;   /* voice / send button, one step quieter */
+  --contour-round-hover: #cccccc;
+  --contour-round-ink: #1a1a1a;  /* 9.3:1 */
+  --contour-badge-bg: #383838;   /* Sign in and other solid badges */
+  --contour-badge-ink: #cfcfcf;  /* 7.5:1 */
+  --contour-ring-quiet: #6b6b6b; /* composer outline, 3.2:1 */
+  --contour-seg-track: #1b1b1b;
+  --contour-seg-active: #3a3a3a;
+  --contour-seg-ink: #f5f5f5;
+  --contour-tip-bg: #2c2c2c;
+  --contour-tip-ink: #ededed;
+  --contour-scroll: #4a4a4a;
+  --contour-code-bg: #2a2a2a;
+  --contour-selection: color-mix(in srgb, #ffffff 22%, transparent);
 }
 
 /* ── Shared tokens ───────────────────────────────────────────────────── */
@@ -126,64 +126,64 @@ const CUSTOM_CSS = String.raw`
   --theme-control-active-accent-mix: 0%;
 
   /* Surfaces */
-  --ui-bg-chrome: var(--andy-frame);
-  --ui-bg-sidebar: var(--andy-frame);
-  --ui-bg-editor: var(--andy-panel);
-  --ui-bg-elevated: var(--andy-raised);
-  --ui-bg-input: var(--andy-field);
-  --ui-chat-surface-background: var(--andy-panel);
-  --ui-sidebar-surface-background: var(--andy-frame);
-  --ui-editor-surface-background: var(--andy-panel);
-  --ui-widget-surface-background: var(--andy-frame);
-  --ui-chat-bubble-background: var(--andy-raised);
-  --ui-chat-bubble-opaque-background: var(--andy-raised);
-  --ui-row-hover-background: var(--andy-hover);
-  --ui-row-active-background: var(--andy-active);
-  --ui-control-hover-background: var(--andy-hover);
-  --ui-control-active-background: var(--andy-active);
-  --chrome-action-hover: var(--andy-hover);
+  --ui-bg-chrome: var(--contour-frame);
+  --ui-bg-sidebar: var(--contour-frame);
+  --ui-bg-editor: var(--contour-panel);
+  --ui-bg-elevated: var(--contour-raised);
+  --ui-bg-input: var(--contour-field);
+  --ui-chat-surface-background: var(--contour-panel);
+  --ui-sidebar-surface-background: var(--contour-frame);
+  --ui-editor-surface-background: var(--contour-panel);
+  --ui-widget-surface-background: var(--contour-frame);
+  --ui-chat-bubble-background: var(--contour-raised);
+  --ui-chat-bubble-opaque-background: var(--contour-raised);
+  --ui-row-hover-background: var(--contour-hover);
+  --ui-row-active-background: var(--contour-active);
+  --ui-control-hover-background: var(--contour-hover);
+  --ui-control-active-background: var(--contour-active);
+  --chrome-action-hover: var(--contour-hover);
 
   /* Text */
-  --ui-text-primary: var(--andy-text);
-  --ui-text-secondary: var(--andy-text-2);
-  --ui-text-tertiary: var(--andy-text-3);
-  --ui-text-quaternary: var(--andy-text-4);
+  --ui-text-primary: var(--contour-text);
+  --ui-text-secondary: var(--contour-text-2);
+  --ui-text-tertiary: var(--contour-text-3);
+  --ui-text-quaternary: var(--contour-text-4);
 
   /* Lines */
-  --ui-stroke-primary: var(--andy-line-strong);
-  --ui-stroke-secondary: var(--andy-line);
-  --ui-stroke-tertiary: var(--andy-line);
+  --ui-stroke-primary: var(--contour-line-strong);
+  --ui-stroke-secondary: var(--contour-line);
+  --ui-stroke-tertiary: var(--contour-line);
   --sidebar-edge-border: transparent;
 
   /* shadcn tokens */
-  --dt-card: var(--andy-panel);
-  --dt-popover: var(--andy-raised);
-  --dt-secondary: var(--andy-active);
-  --dt-accent: var(--andy-active);
-  --dt-sidebar-bg: var(--andy-frame);
+  --dt-card: var(--contour-panel);
+  --dt-popover: var(--contour-raised);
+  --dt-secondary: var(--contour-active);
+  --dt-accent: var(--contour-active);
+  --dt-sidebar-bg: var(--contour-frame);
   --dt-input-bg: 100%;
   --dt-input-border: 0%;
   --dt-input-inset: none;
-  --dt-scrollbar-thumb: var(--andy-scroll);
-  --ui-selection-background: var(--andy-selection);
-  --ui-inline-code-background: var(--andy-code-bg);
+  --dt-scrollbar-thumb: var(--contour-scroll);
+  --ui-selection-background: var(--contour-selection);
+  --ui-inline-code-background: var(--contour-code-bg);
 
   /* 8px corners on panels and fields (default scalar is 0.2) */
   --radius-scalar: 0.8;
 
   /* Chat column: 800px max, centered. The transcript and the composer
      both read this one variable. */
-  --andy-column: 800px;
-  --composer-width: var(--andy-column);
+  --contour-column: 800px;
+  --composer-width: var(--contour-column);
 
   /* Pane tabs */
-  --pane-tab-active-accent: var(--andy-text);
-  --pane-tab-strip-bg: var(--andy-frame);
-  --pane-tab-active-bg: var(--andy-panel);
+  --pane-tab-active-accent: var(--contour-text);
+  --pane-tab-strip-bg: var(--contour-frame);
+  --pane-tab-active-bg: var(--contour-panel);
 }
 
 body {
-  background: var(--andy-frame);
+  background: var(--contour-frame);
 }
 
 /* ── Pane tabs, shared: sentence case, no separators ─────────────────── */
@@ -198,18 +198,18 @@ body {
 }
 
 [data-slot="pane-tab"][data-active="false"] {
-  color: var(--andy-text-3);
+  color: var(--contour-text-3);
 }
 
 [data-slot="pane-tab"][data-active="false"]:hover {
-  color: var(--andy-text);
+  color: var(--contour-text);
 }
 
 /* ── Titlebar tabs: browser-style ────────────────────────────────────────
    The active tab is panel-colored with rounded top corners and flows into
    the content below. Inactive tabs sit on the frame. */
 [class*="group/pane-header"][class*="app-region:drag"] {
-  --pane-tab-active-bg: var(--andy-panel);
+  --pane-tab-active-bg: var(--contour-panel);
   --pane-tab-strip-bg: transparent;
   --pane-tab-active-accent: transparent;
   /* Tabs start 4px under the window top, like a browser, so the label has
@@ -237,14 +237,14 @@ body {
    panel-colored and paints over the strip's line, so the line breaks under
    it and the tab flows into the content below. */
 [class*="group/pane-header"][class*="app-region:drag"] {
-  box-shadow: inset 0 -1px 0 var(--andy-line-strong);
+  box-shadow: inset 0 -1px 0 var(--contour-line-strong);
 }
 
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"] {
   box-shadow:
-    inset 1px 0 0 var(--andy-line-strong),
-    inset -1px 0 0 var(--andy-line-strong),
-    inset 0 1px 0 var(--andy-line-strong);
+    inset 1px 0 0 var(--contour-line-strong),
+    inset -1px 0 0 var(--contour-line-strong),
+    inset 0 1px 0 var(--contour-line-strong);
 }
 
 /* Bottom flares: a concave curve on each side of the active tab carries
@@ -268,25 +268,25 @@ body {
   left: -6px;
   background: radial-gradient(circle at 0 0,
     transparent 5.5px,
-    var(--andy-line-strong) 6px,
-    var(--andy-line-strong) 7px,
-    var(--andy-panel) 7.5px);
+    var(--contour-line-strong) 6px,
+    var(--contour-line-strong) 7px,
+    var(--contour-panel) 7.5px);
 }
 
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="true"]::after {
   right: -6px;
   background: radial-gradient(circle at 100% 0,
     transparent 5.5px,
-    var(--andy-line-strong) 6px,
-    var(--andy-line-strong) 7px,
-    var(--andy-panel) 7.5px);
+    var(--contour-line-strong) 6px,
+    var(--contour-line-strong) 7px,
+    var(--contour-panel) 7.5px);
 }
 
 /* The strip does not span the whole header (the titlebar keeps room on
    the right), so the header row carries the same baseline to the zone's
    right edge. The strip paints over it with its own line. */
 ${MAIN} > [data-panel-header] {
-  box-shadow: inset 0 -1px 0 var(--andy-line-strong);
+  box-shadow: inset 0 -1px 0 var(--contour-line-strong);
 }
 
 /* The chat body gets the same 1px line down its left and right edges,
@@ -298,8 +298,8 @@ ${MAIN} > .flex-1:not([data-panel-header])::after {
   content: "";
   position: absolute;
   inset: 0;
-  border-left: 1px solid var(--andy-line-strong);
-  border-right: 1px solid var(--andy-line-strong);
+  border-left: 1px solid var(--contour-line-strong);
+  border-right: 1px solid var(--contour-line-strong);
   pointer-events: none;
   z-index: 50;
 }
@@ -314,7 +314,7 @@ ${MAIN} > .flex-1:not([data-panel-header])::after {
 }
 
 [class*="group/pane-header"][class*="app-region:drag"] [data-slot="pane-tab"][data-active="false"]:hover {
-  --pane-tab-strip-bg: var(--andy-hover);
+  --pane-tab-strip-bg: var(--contour-hover);
   box-shadow: none;
 }
 
@@ -325,15 +325,15 @@ ${MAIN} > .flex-1:not([data-panel-header])::after {
    tab control, one heading style and one search field, so the two sides
    read as the same piece of chrome whichever tab is showing. */
 ${SB} {
-  --ui-bg-editor: var(--andy-frame);
-  --ui-surface-background: var(--andy-frame);
-  --ui-editor-surface-background: var(--andy-frame);
-  --ui-chat-surface-background: var(--andy-frame);
-  --ui-widget-surface-background: var(--andy-frame);
-  --ui-text-primary: var(--andy-sidebar-text);
-  --ui-text-secondary: var(--andy-sidebar-text-2);
-  --ui-text-tertiary: var(--andy-sidebar-text-3);
-  background: var(--andy-frame);
+  --ui-bg-editor: var(--contour-frame);
+  --ui-surface-background: var(--contour-frame);
+  --ui-editor-surface-background: var(--contour-frame);
+  --ui-chat-surface-background: var(--contour-frame);
+  --ui-widget-surface-background: var(--contour-frame);
+  --ui-text-primary: var(--contour-sidebar-text);
+  --ui-text-secondary: var(--contour-sidebar-text-2);
+  --ui-text-tertiary: var(--contour-sidebar-text-3);
+  background: var(--contour-frame);
 }
 
 /* Tab strip: a segmented control. The strip is anchored to the bottom of
@@ -341,12 +341,12 @@ ${SB} {
    buttons. It stays inside that area so nothing clips it. */
 ${SB} [class*="group/pane-header"][class*="h-7"] {
   --pane-tab-strip-bg: transparent;
-  --pane-tab-active-bg: var(--andy-seg-active);
+  --pane-tab-active-bg: var(--contour-seg-active);
   --pane-tab-active-accent: transparent;
   height: 32px;
   margin: 0 10px;
   padding: 4px;
-  background: var(--andy-seg-track);
+  background: var(--contour-seg-track);
   border-radius: 8px;
 }
 
@@ -372,11 +372,11 @@ ${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] > * {
 }
 
 ${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="true"] {
-  color: var(--andy-seg-ink);
+  color: var(--contour-seg-ink);
 }
 
 ${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="false"]:hover {
-  --pane-tab-strip-bg: var(--andy-hover);
+  --pane-tab-strip-bg: var(--contour-hover);
   box-shadow: none;
 }
 
@@ -385,7 +385,7 @@ ${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-act
    quiet sentence-case label. Tab labels are excluded. */
 .uppercase[class*="tracking-[0.16em]"],
 ${SB} .uppercase[class*="tracking-"]:not([data-slot="pane-tab"] *) {
-  color: var(--andy-text-3);
+  color: var(--contour-text-3);
   text-transform: none;
   letter-spacing: normal;
   font-size: 0.75rem;
@@ -432,17 +432,17 @@ ${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"] {
   margin-bottom: 8px;
   padding: 0 12px;
   gap: 8px;
-  background: var(--andy-field);
+  background: var(--contour-field);
   border: 0;
   border-radius: 8px;
 }
 
 ${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"]:hover {
-  background: var(--andy-field-hover);
+  background: var(--contour-field-hover);
 }
 
 ${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"]:focus-within {
-  outline: 2px solid var(--andy-focus);
+  outline: 2px solid var(--contour-focus);
   outline-offset: 2px;
 }
 
@@ -451,7 +451,7 @@ ${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"] > input:focus
 }
 
 ${SB} [class*="border-b"][class*="has-[>input:focus]:border-ring"] > input::placeholder {
-  color: var(--andy-sidebar-text-3);
+  color: var(--contour-sidebar-text-3);
 }
 
 /* Session rows: the hover and selected band lines up with the search
@@ -493,29 +493,29 @@ ${SB} [data-roster-key] > .flex-1 > div:nth-child(2) {
 
 /* ── Tooltips ────────────────────────────────────────────────────────── */
 [data-slot="tooltip-content"] {
-  background: var(--andy-tip-bg);
-  color: var(--andy-tip-ink);
+  background: var(--contour-tip-bg);
+  color: var(--contour-tip-ink);
   border-radius: 8px;
 }
 
 [data-slot="tooltip-arrow"],
 [data-slot="tooltip-arrow"] path {
-  fill: var(--andy-tip-bg);
+  fill: var(--contour-tip-bg);
 }
 
 /* ── Primary button: the accent fill with inverse ink ────────────────── */
 [data-slot="button"][data-variant="default"] {
-  background: var(--andy-cta);
-  color: var(--andy-cta-ink);
+  background: var(--contour-cta);
+  color: var(--contour-cta-ink);
   border-radius: 6px;
 }
 
 [data-slot="button"][data-variant="default"]:hover {
-  background: var(--andy-cta-hover);
+  background: var(--contour-cta-hover);
 }
 
 [data-slot="button"][data-variant="default"]:active {
-  background: var(--andy-cta-press);
+  background: var(--contour-cta-press);
 }
 
 [data-slot="button"]:not([data-variant="default"]) {
@@ -528,12 +528,12 @@ ${SB} [data-roster-key] > .flex-1 > div:nth-child(2) {
    full 800px. Match the text, keeping the dock's 10px drag margin
    (5px each side, outside the visible box). */
 [data-slot="composer-dock"] {
-  --composer-width: calc(var(--andy-column) - 3rem);
-  width: calc(min(var(--andy-column), 100%) - 3rem + 10px);
+  --composer-width: calc(var(--contour-column) - 3rem);
+  width: calc(min(var(--contour-column), 100%) - 3rem + 10px);
 }
 
 [data-slot="composer-root"]:not([data-slot="composer-dock"] *) {
-  --composer-width: calc(var(--andy-column) - 3rem);
+  --composer-width: calc(var(--contour-column) - 3rem);
 }
 
 /* ── User messages: right-aligned bubbles, at most 70% of the column ──
@@ -557,13 +557,13 @@ ${SB} [data-roster-key] > .flex-1 > div:nth-child(2) {
 }
 
 [data-slot="aui_user-message-root"] .composer-human-message.cursor-pointer {
-  background: var(--andy-raised);
+  background: var(--contour-raised);
 }
 
 /* ── Composer round button (voice, send): softer than the full accent ── */
 [data-slot="button"][class*="bg-foreground"] {
-  background: var(--andy-round-bg);
-  color: var(--andy-round-ink);
+  background: var(--contour-round-bg);
+  color: var(--contour-round-ink);
   border-radius: 999px;
 }
 
@@ -572,67 +572,67 @@ ${SB} [data-roster-key] > .flex-1 > div:nth-child(2) {
 }
 
 [data-slot="button"][class*="bg-foreground"]:hover {
-  background: var(--andy-round-hover);
+  background: var(--contour-round-hover);
 }
 
 [data-slot="button"][class*="bg-foreground"]:disabled {
-  background: var(--andy-round-bg);
+  background: var(--contour-round-bg);
   opacity: 0.4;
 }
 
 /* ── Solid badges (Sign in): a quiet gray chip, not an accent fill ───── */
 [data-slot="badge"][class*="bg-primary"] {
-  background: var(--andy-badge-bg);
-  color: var(--andy-badge-ink);
+  background: var(--contour-badge-bg);
+  color: var(--contour-badge-ink);
 }
 
 /* ── Segmented tabs (Radix): track with a raised pill ────────────────── */
 [data-slot="tabs-list"] {
-  background: var(--andy-seg-track);
+  background: var(--contour-seg-track);
   border-radius: 8px;
   padding: 4px;
 }
 
 [data-slot="tabs-trigger"] {
   border-radius: 6px;
-  color: var(--andy-text-2);
+  color: var(--contour-text-2);
   transition-property: background-color, color;
 }
 
 [data-slot="tabs-trigger"]:hover:not([data-state="active"]) {
-  color: var(--andy-text);
-  background: var(--andy-hover);
+  color: var(--contour-text);
+  background: var(--contour-hover);
 }
 
 [data-slot="tabs-trigger"][data-state="active"] {
-  background: var(--andy-seg-active);
-  color: var(--andy-seg-ink);
+  background: var(--contour-seg-active);
+  color: var(--contour-seg-ink);
   box-shadow: none;
 }
 
 /* ── Fields: filled, no border at rest ───────────────────────────────── */
 [data-slot="input"],
 [data-slot="input-group"] {
-  background: var(--andy-field);
+  background: var(--contour-field);
   border-radius: 8px;
 }
 
 [data-slot="input"]::placeholder {
-  color: var(--andy-text-3);
+  color: var(--contour-text-3);
 }
 
 /* ── Menus and dialogs ───────────────────────────────────────────────── */
 [data-slot="dropdown-menu-content"],
 [data-slot="dropdown-menu-sub-content"],
 [data-slot="dialog-content"] {
-  background: var(--andy-raised);
-  border-color: var(--andy-line-strong);
+  background: var(--contour-raised);
+  border-color: var(--contour-line-strong);
   border-radius: 8px;
 }
 
 /* ── Focus: one visible ring on every control ────────────────────────── */
 :is(button, a, input, textarea, select, [role="tab"], [role="menuitem"], [tabindex]):focus-visible {
-  outline: 2px solid var(--andy-focus);
+  outline: 2px solid var(--contour-focus);
   outline-offset: 2px;
 }
 
@@ -704,8 +704,8 @@ const dark = {
 }
 
 const theme = {
-  name: 'andy-desktop',
-  label: 'Andy Desktop',
+  name: 'contour',
+  label: 'Contour',
   description: 'Monochrome: charcoal and white in dark, paper and black in light',
   colors: light,
   darkColors: dark,
@@ -755,8 +755,8 @@ const theme = {
 }
 
 export default {
-  id: 'andy',
-  name: 'Andy theme',
+  id: 'contour',
+  name: 'Contour theme',
   register(ctx) {
     ctx.register({ id: 'theme', area: THEMES_AREA, data: theme })
   }
