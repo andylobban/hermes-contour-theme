@@ -53,7 +53,8 @@ customCSS: |
     --andy-frame: #262626;     /* titlebar, sidebar, window edge */
     --andy-panel: #1b1b1b;     /* main content panel */
     --andy-raised: #2c2c2c;    /* popovers, menus, raised controls */
-    --andy-field: #262626;     /* search and text fields */
+    --andy-field: #2e2e2e;     /* search and text fields; 5.1:1 for placeholder */
+    --andy-field-hover: #333333;
     --andy-hover: #2a2a2a;
     --andy-active: #333333;
     --andy-line: #2e2e2e;
@@ -207,7 +208,7 @@ customCSS: |
   }
 
   [class*="opacity-30"][class*="focus-within:opacity-100"]:hover {
-    background: var(--andy-hover);
+    background: var(--andy-field-hover);
   }
 
   [class*="opacity-30"][class*="focus-within:opacity-100"]:focus-within {
