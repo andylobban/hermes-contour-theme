@@ -410,6 +410,17 @@ ${SB} [data-roster-key] > .flex-1 > div:nth-child(2) {
   border-radius: 6px;
 }
 
+/* ── User messages: right-aligned bubbles, at most 70% of the column ──
+   Short messages shrink to fit; long ones wrap at 70%. Only the read-only
+   bubble (it carries cursor-pointer); the inline editor keeps full width
+   so there is room to edit. Corners are half the stock 12.8px. */
+[data-slot="aui_user-message-root"] .composer-human-message.cursor-pointer {
+  width: fit-content;
+  max-width: 70%;
+  margin-left: auto;
+  border-radius: 6px;
+}
+
 /* ── Composer round button (voice, send): softer than the full accent ── */
 [data-slot="button"][class*="bg-foreground"] {
   background: var(--andy-round-bg);
