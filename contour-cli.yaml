@@ -1,12 +1,12 @@
-# Andy: terminal colors for the Hermes CLI and TUI.
+# Contour CLI: terminal colors for the Hermes CLI and TUI.
 #
-# Hermes reads this from ~/.hermes/skins/andy.yaml (symlinked to this file)
-# when config.yaml sets `display.skin: andy`.
+# Hermes reads this from ~/.hermes/skins/contour-cli.yaml when config.yaml
+# sets `display.skin: contour-cli`.
 #
 # The desktop app uses plugin.js instead ("Contour" in Appearance),
 # because only a plugin theme can carry separate light and dark palettes.
 
-name: andy
+name: contour-cli
 description: Charcoal panels, neutral grays, lime accent
 
 colors:
