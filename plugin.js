@@ -336,14 +336,17 @@ ${SB} {
   background: var(--contour-frame);
 }
 
-/* Tab strip: a segmented control. The strip is anchored to the bottom of
-   the titlebar area, which leaves room for a 32px control below the window
-   buttons. It stays inside that area so nothing clips it. */
+/* Tab strip: a segmented control. Hermes pins the strip to the bottom of a
+   62px sidebar header (34px titlebar + 28px strip). The chat zone's header
+   is 34px, and its 1px outline runs along that header's last row, y=33. A
+   28px control lifted 1px spans y=33 to 61, so its top lines up with the
+   top of the chat window's outline. */
 ${SB} [class*="group/pane-header"][class*="h-7"] {
   --pane-tab-strip-bg: transparent;
   --pane-tab-active-bg: var(--contour-seg-active);
   --pane-tab-active-accent: transparent;
-  height: 32px;
+  height: 28px;
+  bottom: 1px;
   margin: 0 10px;
   padding: 4px;
   background: var(--contour-seg-track);
@@ -357,11 +360,14 @@ ${SB} [class*="group/pane-header"][class*="h-7"] [role="tablist"] {
 ${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] {
   flex: 1 1 0;
   max-width: none;
-  height: 24px;
+  /* 20px segments: 2px less room above and below the label than the old
+     24px. 11px text (2px under the stock 13px). Inactive labels measure
+     5.5:1 light and 6.4:1 dark on the track; active 17.4:1 and 10.4:1. */
+  height: 20px;
   justify-content: center;
   border-radius: 6px;
   box-shadow: none;
-  font-size: 0.8125rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   transition-property: background-color, color;
   transition-duration: 120ms;
@@ -369,6 +375,11 @@ ${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] {
 
 ${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] > * {
   justify-content: center;
+}
+
+/* Label side padding: 6px, 2px under the stock 8px. */
+${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"] > .pane-tab-content > [class*="px-2"] {
+  padding-inline: 6px;
 }
 
 ${SB} [class*="group/pane-header"][class*="h-7"] [data-slot="pane-tab"][data-active="true"] {
