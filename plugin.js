@@ -471,6 +471,14 @@ ${SB} .row-hover > .cursor-pointer[class*="pl-3.5"] {
   padding-left: 6px;
 }
 
+/* Session rows: 50% more room above and below the title. Stock, the 17.55px
+   title line (13px at 1.35 leading) centres in a 26px minimum row, leaving
+   about 4.2px each side. 6.3px each side makes the row about 30px. Inline
+   rows only; card rows keep their own spacing. */
+${SB} .row-hover > .cursor-pointer:not([class*="flex-col"]) {
+  padding-block: 6.3px;
+}
+
 /* With the lead padding gone, the 14px dot slot sat flush on the band's
    edge. Nudge it so the dot sits optically centred between the band edge
    and the title's first glyph (which carries ~2.5px of side bearing past
